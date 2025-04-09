@@ -27,9 +27,6 @@ jobs:
               
             - name: Build Apk
               run: flutter build apk --release
-
-            - name: Upload APK artifacts
-              run: actions/upload-artifacts@v4
               
             - name: relese-apk
               run: build/apps/outputs/flutter-apk/app-relese.apk  

@@ -19,24 +19,25 @@ jobs:
               with:
                 flutter-version: 3.29.0
 
+            - name: Cache flutter depencies
+              uses: actions/checkout@v2
+              with:
+                path: |
+                  ~/.pub-cache
+                  ~/.gradle 
+                key: $ {{runner.os}}-flutter-$ {{ hashFiles()es('**/punspec.yaml') }}   
+                restore-keys: |
+                  $ {{ runner.os}}-flutter-
+
             - name: Install dependencies
               run:  flutter pub get
+
+            - name: Format Check
+              run: dart format --set-exit-if-changed .  
           
             - name: Project analyze
               run: flutter analyze
               
-            - name: Build APK
-              run: flutter build apk --release
-            
-            - name: Format Check
-              run: dart format --set-exit-if-changed .
-              
-            
-            - name: Upload APK
-              uses: actions/upload-artifact@v4
-              with:
-                name: app-release-apk
-                path: build/app/outputs/flutter-apk/app-release.apk
 
             
 

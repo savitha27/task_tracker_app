@@ -25,7 +25,7 @@ jobs:
                 path: |
                   ~/.pub-cache
                   ~/.gradle 
-                key: $ {{runner.os}}-flutter-$ {{ hashFiles()es('**/punspec.yaml') }}   
+                key: $ {{runner.os}}-flutter-$ {{ hashFiles('**/punspec.yaml') }}   
                 restore-keys: |
                   $ {{ runner.os}}-flutter-
 
